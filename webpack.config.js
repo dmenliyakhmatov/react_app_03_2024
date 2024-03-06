@@ -19,9 +19,9 @@ module.exports = env => {
     devtool: isDev ? 'inline-source-map' : false,
     devServer: isDev
       ? {
-          open: false,
+          open: true,
           hot: true,
-          port: env.mode ?? 3000,
+          port: env.PORT ?? 3000,
           historyApiFallback: true,
         }
       : undefined,
