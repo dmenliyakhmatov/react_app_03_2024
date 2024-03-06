@@ -1,0 +1,72 @@
+/* Header.module.css */
+
+.headerContainer {
+    background-color: peachpuff; /* Персиковый цвет */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .leftSection {
+    display: flex;
+    align-items: center;
+  }
+  
+  .burgerButton {
+    font-size: 20px;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .logo {
+    margin-left: 10px;
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  .centerSection {
+    display: flex;
+    align-items: center;
+  }
+  
+  .searchInput {
+    padding: 5px;
+    margin-right: 10px;
+  }
+  
+  .newPostButton {
+    background-color: #4caf50; /* Зеленая кнопка */
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .rightSection {
+    display: flex;
+    align-items: center;
+  }
+  
+  .iconMessage,
+  .iconNotification {
+    font-size: 20px;
+    margin-right: 10px;
+    cursor: pointer;
+  }
+  
+  .avatar {
+    width: 30px;
+    height: 30px;
+    background-color: #ddd; /* Серый цвет */
+    border-radius: 50%;
+    margin-right: 10px;
+    overflow: hidden;
+    /* Вставьте фактическое изображение пользователя как фон */
+    /* background-image: url('path-to-avatar-image.jpg'); */
+    /* background-size: cover; */
+  }
+  

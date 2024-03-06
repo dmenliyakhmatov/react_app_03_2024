@@ -1,0 +1,76 @@
+/* PostCard.module.css */
+
+.postCard {
+  border-radius: 8px;
+  margin: 10px;
+  padding: 20px;
+  background-color: #fff;
+  transition: box-shadow 0.3s ease;
+
+  &:hover {
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  }
+
+  & a {
+    color: #000;
+    text-decoration: none
+  }
+}
+
+.backgroundRed {
+  background-color: red;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.headerLeft {
+  display: flex;
+  align-items: center;
+
+  gap: 8px
+}
+
+.authorInfo {
+  display: flex;
+  align-items: center;
+}
+
+.avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.moreOptionsButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.headerRight {
+  display: flex;
+  align-items: center;
+}
+
+.coverImage {
+  margin: 15px 0;
+
+  width: 100%;
+
+  & img {
+    width: 100%;
+  }
+}
+
+.stats {
+  display: flex;
+  gap: 12px;
+  font-size: 14px;
+}

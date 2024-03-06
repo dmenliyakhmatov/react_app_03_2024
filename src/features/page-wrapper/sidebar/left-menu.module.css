@@ -1,0 +1,27 @@
+/* LeftMenu.module.css */
+
+.leftMenu {
+    position: sticky;
+    background-color: #333; /* Цвет фона левого меню */
+    color: white;
+    padding: 10px;
+    width: 220px;
+    top: 60
+  }
+  
+  .menuItem {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    cursor: pointer;
+  }
+  
+  .icon {
+    font-size: 20px;
+    margin-right: 10px;
+  }
+  
+  .menuItem:hover {
+    background-color: #555; /* Цвет фона при наведении */
+  }
+  
