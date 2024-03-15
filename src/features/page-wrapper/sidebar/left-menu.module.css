@@ -1,27 +1,39 @@
-/* LeftMenu.module.css */
-
 .leftMenu {
-    position: sticky;
-    background-color: #333; /* Цвет фона левого меню */
-    color: white;
-    padding: 10px;
-    width: 220px;
-    top: 60
-  }
-  
-  .menuItem {
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
-    cursor: pointer;
-  }
-  
-  .icon {
-    font-size: 20px;
-    margin-right: 10px;
-  }
-  
-  .menuItem:hover {
-    background-color: #555; /* Цвет фона при наведении */
-  }
-  
+  position: sticky;
+  background-color: #333;
+  color: white;
+  padding: 10px;
+  width: 220px;
+  top: 55px;
+  height: calc(100vh - 75px);
+  overflow-y: auto;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.menuItem {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  cursor: pointer;
+
+  text-decoration: none;
+  color: white;
+}
+
+.active {
+  color: aqua;
+}
+
+.menuItem .icon {
+  font-size: 20px;
+  margin-right: 10px;
+}
+
+.menuItem:hover {
+  background-color: #555;
+  /* Цвет фона при наведении */
+}

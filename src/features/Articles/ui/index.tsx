@@ -1,6 +1,6 @@
+import avatar from 'assets/images/avatar.jpg';
+import coverImg from 'assets/images/cover.webp';
 import { StatsButtons } from './StatsButtons';
-import avatar from './avatar.jpg';
-import coverImg from './cover.webp';
 import s from './post.module.css';
 
 const postData = {
