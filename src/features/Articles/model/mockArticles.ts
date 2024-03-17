@@ -1,7 +1,8 @@
-import avatar from 'assets/avatar.jpg';
-import cover from 'assets/cover.webp';
+import avatar from 'assets/images/avatar.jpg';
+import cover from 'assets/images/cover.webp';
+import { Article } from '../../../shared/types/article';
 
-export const mockPosts = [
+export const mockPosts: Article[] = [
   {
     id: 1,
     section: 'Technology',
