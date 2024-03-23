@@ -1,3 +1,4 @@
+import LikeIcon from 'assets/icons/heart.svg';
 import { useState } from 'react';
 import { IconButton } from '../../../components/IconButton';
 import s from './post.module.css';
@@ -18,7 +19,9 @@ export const StatsButtons = (props: StatsButtonProps) => {
   return (
     <div className={s.stats}>
       <IconButton> Viwes: 234</IconButton>
-      <IconButton onClick={onLikeClick}>Likes: {likes}</IconButton>
+      <IconButton icon={<LikeIcon color="red" />} onClick={onLikeClick}>
+        {likes}
+      </IconButton>
       <IconButton> Comments: 234</IconButton>
       <IconButton> Bookmarks: 23432</IconButton>
     </div>
