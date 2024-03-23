@@ -1,9 +1,27 @@
+import { RouterProvider } from 'react-router-dom';
 import './global.css';
-import { ArticlePage } from './pages/ArticlesPage';
+import { router } from './router';
 
 export const App = () => {
-  return <ArticlePage />;
+  return <RouterProvider router={router} />;
 };
+
+// const Compmonent = () => {
+//   ////useConetxt - достает данные  из RouterProvider
+//   // path: '/',
+//   // element: <div>Корнейвой путь</div>,
+
+//   //currentUrl - текущий url
+
+//   const currentUrl = '';
+//   const fallbakck = '';
+
+//   if (currentUrl === '/') return <div>Корнейвой путь</div>;
+
+//   if (currentUrl === 'fresh') return <div>Раздел свежее</div>;
+
+//   return fallbakck;
+// };
 
 // 1. В проекте, который мы пишем на занятии добавьте общий и переиспользуемый компонент кнопки для кнопок like, vies, bookmarks, comment. И использовать его для всех 4-х кнопок.
 // В прокете даже есть уже компонент IconButton его нужно просто немного дописать.

@@ -1,5 +1,7 @@
 import avatar from 'assets/images/avatar.jpg';
 import coverImg from 'assets/images/cover.webp';
+import { Link } from 'react-router-dom';
+import { ROUTES } from '../../../../router/routes';
 import { Article } from '../../../types/article';
 import { StatsButtons } from '../ArticleStatsButtons/StatsButtons';
 import s from './post.module.css';
@@ -28,8 +30,9 @@ export const PostCard = (props: PostCardProps) => {
           <button className={s.moreOptionsButton}>Подписаться</button>
         </div>
       </div>
-
-      <h2>{postData.title}</h2>
+      <Link to={`${ROUTES.ARTICLE}/${postData.id}`}>
+        <h2>{postData.title}</h2>
+      </Link>
 
       <div className={s.coverImage}>
         <img src={coverImg} alt="cover" />
