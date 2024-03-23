@@ -1,7 +1,8 @@
 import avatar from 'assets/images/avatar.jpg';
+import { ChangeEvent } from 'react';
 import styles from './header.module.css'; // Путь к вашему файлу стилей
 
-export const Header = () => {
+export const Header = ({ onSearchChange }: { onSearchChange?: (e: ChangeEvent<HTMLInputElement>) => void }) => {
   return (
     <header className={styles.headerContainer}>
       <div className={styles.leftSection}>
@@ -9,7 +10,7 @@ export const Header = () => {
         <div className={styles.logo}>Your Logo</div>
       </div>
       <div className={styles.centerSection}>
-        <input type="text" placeholder="Search" className={styles.searchInput} />
+        <input type="text" placeholder="Search" className={styles.searchInput} onChange={onSearchChange} />
         <button className={styles.newPostButton}>Новый пост</button>
       </div>
       <div className={styles.rightSection}>

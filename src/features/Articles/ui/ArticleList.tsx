@@ -1,10 +1,15 @@
 import { PostCard } from 'shared/features/Article/ArticleCard';
-import { mockPosts } from 'shared/mocks/mockArticles';
+import { Article } from 'shared/types/article';
 
-export const ArticleList = () => {
+type ArticleListProps = {
+  articles: Article[];
+};
+
+export const ArticleList = ({ articles }: ArticleListProps) => {
+  // const [articles, setArticles] = useState(mockPosts);
   return (
     <div>
-      {mockPosts.map((article, index) => (
+      {articles.map((article, index) => (
         <PostCard postData={article} key={index} />
       ))}
     </div>

@@ -7,6 +7,11 @@ type IconButtonProps = {
   onClick?: (event: MouseEvent<HTMLButtonElement>) => void;
 };
 
-export const IconButton = () => {
-  return <button className={styles.iconButton}></button>;
+export const IconButton = (props: IconButtonProps) => {
+  return (
+    <button className={styles.iconButton} onClick={props.onClick}>
+      {props.icon && <span className={styles.icon}>{props.icon}</span>}
+      {props.children}
+    </button>
+  );
 };

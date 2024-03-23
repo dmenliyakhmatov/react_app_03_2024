@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { IconButton } from '../../../components/IconButton';
 import s from './post.module.css';
 
 type StatsButtonProps = {
@@ -16,12 +17,10 @@ export const StatsButtons = (props: StatsButtonProps) => {
 
   return (
     <div className={s.stats}>
-      <button className={s.moreOptionsButton}> Viwes: 234</button>
-      <button className={s.moreOptionsButton} onClick={onLikeClick}>
-        Likes: {likes}
-      </button>
-      <button className={s.moreOptionsButton}> Comments: 234</button>
-      <button className={s.moreOptionsButton}> Bookmarks: 23432</button>
+      <IconButton> Viwes: 234</IconButton>
+      <IconButton onClick={onLikeClick}>Likes: {likes}</IconButton>
+      <IconButton> Comments: 234</IconButton>
+      <IconButton> Bookmarks: 23432</IconButton>
     </div>
   );
 };
