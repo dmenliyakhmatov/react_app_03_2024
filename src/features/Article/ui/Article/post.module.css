@@ -1,7 +1,10 @@
+/* PostCard.module.css */
+
 .postCard {
-  border-radius: 8px;
-  margin: 10px;
-  padding: 20px;
+
+  border-radius: 0 0 8px 8px;
+  /* margin: 10px; */
+  /* padding: 20px; */
   background-color: #fff;
   transition: box-shadow 0.3s ease;
 
@@ -71,4 +74,9 @@
   display: flex;
   gap: 12px;
   font-size: 14px;
+}
+
+.centeredContentWrapper {
+  width: 600px;
+  margin: 0 auto;
 }

@@ -11,5 +11,4 @@ export type Article = {
   comments: number;
   bookmarks: number;
   content: string;
-  // obj: Record<string, string | number>;
 };

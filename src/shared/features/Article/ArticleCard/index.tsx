@@ -1,7 +1,7 @@
 import avatar from 'assets/images/avatar.jpg';
 import coverImg from 'assets/images/cover.webp';
-import { Article } from '../../../shared/types/article';
-import { StatsButtons } from './StatsButtons';
+import { Article } from '../../../types/article';
+import { StatsButtons } from '../ArticleStatsButtons/StatsButtons';
 import s from './post.module.css';
 
 type PostCardProps = {
