@@ -22,9 +22,9 @@ export const PostCard = (props: PostCardProps) => {
           <span>{postData.section}</span>
           <div className={s.authorInfo}>
             <img src={avatar} alt="avatar" className={s.avatar} />
-            <span>{postData.authorName}</span>
+            <span>{postData.user.fullName}</span>
           </div>
-          <span>{postData.publicationDate}</span>
+          <span>{postData.publication_date}</span>
         </div>
         <div className={s.headerRight}>
           <button className={s.moreOptionsButton}>Подписаться</button>

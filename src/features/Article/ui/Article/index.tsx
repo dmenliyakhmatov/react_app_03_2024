@@ -19,10 +19,10 @@ export const Article = ({ id }: ArticleProps) => {
           <div className={styles.headerLeft}>
             <span>{article.section}</span>
             <div className={styles.authorInfo}>
-              <img src={article.authorAvatar} alt={`${article.authorName}'s Avatar`} className={styles.avatar} />
-              <span>{article.authorName}</span>
+              <img src={article.user.avatar} alt={`${article.user.fullName}'s Avatar`} className={styles.avatar} />
+              <span>{article.user.fullName}</span>
             </div>
-            <span>{article.publicationDate}</span>
+            <span>{article.publication_date}</span>
           </div>
           {/* <div className={styles.headerRight}>
             <IconButton>...</IconButton>
@@ -33,7 +33,7 @@ export const Article = ({ id }: ArticleProps) => {
       </div>
 
       <div className={styles.coverImage}>
-        <img src={article.coverImage} alt="Cover" />
+        <img src={article.cover_image} alt="Cover" />
       </div>
 
       <div className={styles.centeredContentWrapper}>{article.content}</div>
