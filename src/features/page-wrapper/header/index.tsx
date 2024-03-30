@@ -2,7 +2,9 @@ import avatar from 'assets/images/avatar.jpg';
 import { ChangeEvent } from 'react';
 import styles from './header.module.css'; // Путь к вашему файлу стилей
 
-export const Header = ({ onSearchChange }: { onSearchChange?: (e: ChangeEvent<HTMLInputElement>) => void }) => {
+export type HeaderProps = { onSearchChange?: (e: ChangeEvent<HTMLInputElement>) => void };
+
+export const Header = ({ onSearchChange }: HeaderProps) => {
   return (
     <header className={styles.headerContainer}>
       <div className={styles.leftSection}>
