@@ -1,14 +1,13 @@
-import { useLocation, useParams, useSearchParams } from 'react-router-dom';
+import { useState } from 'react';
+import { useParams, useSearchParams } from 'react-router-dom';
 import { Article } from '../features/Article/ui/Article';
 
 export const ArticlePage = () => {
   const { id } = useParams();
   //   const naigate = useNavigate();
-  const location = useLocation();
+  const [isLoading, setIsLoading] = useState(false);
 
   const [params, setParams] = useSearchParams();
-
-  console.log(location);
 
   if (!id) return <h2>Такой статьи не существует</h2>;
 
@@ -19,7 +18,7 @@ export const ArticlePage = () => {
 
       <button
         onClick={() => {
-          params.set('section', 'technology');
+          params.set('id', '1');
           setParams(params);
         }}
       >
@@ -27,13 +26,13 @@ export const ArticlePage = () => {
       </button>
       <button
         onClick={() => {
-          params.set('section', 'trevel');
+          params.set('id', '2');
           setParams(params);
         }}
       >
         Путешествия
       </button>
-      <Article id={Number(id)} />
+      <Article id={Number(params.get('id') ?? 1)} />
     </>
   );
 };

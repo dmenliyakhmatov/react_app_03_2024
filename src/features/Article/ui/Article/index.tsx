@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { StatsButtons } from 'shared/features/Article/ArticleStatsButtons/StatsButtons';
-import { mockPosts } from 'shared/mocks/mockArticles';
+import type { Article as ArticleType } from '../../../../shared/types/article';
 import styles from './post.module.css';
 
 type ArticleProps = {
@@ -8,9 +8,23 @@ type ArticleProps = {
 };
 
 export const Article = ({ id }: ArticleProps) => {
-  const [article, setArticle] = useState(mockPosts.find(article => Number(id) === article.id) ?? null);
+  const [article, setArticle] = useState<ArticleType | null>(null);
 
-  if (!article) return null;
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    setIsLoading(true);
+
+    fetch(`https://68f241df693169c2.mokky.dev/articles/${id}`)
+      .then(res => res.json())
+      .then((articlesData: ArticleType) => {
+        setArticle(articlesData);
+      })
+      .catch(console.error)
+      .finally(() => setIsLoading(false));
+  }, [id]);
+
+  if (!article || isLoading) return <>Loading...</>;
 
   return (
     <div className={styles.postCard}>

@@ -4,6 +4,7 @@ import { mockPosts } from '../shared/mocks/mockArticles';
 
 export const FreshPage = () => {
   const [articles, setArticles] = useState(mockPosts);
+  console.log('render freshPage');
 
   return (
     // <PageWrapper>

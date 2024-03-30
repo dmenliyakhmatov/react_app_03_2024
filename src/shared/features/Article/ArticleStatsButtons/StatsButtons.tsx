@@ -12,7 +12,6 @@ export const StatsButtons = (props: StatsButtonProps) => {
 
   const onLikeClick = () => {
     setLikes(likes + 1);
-
     // likes = likes + 1;
   };
 

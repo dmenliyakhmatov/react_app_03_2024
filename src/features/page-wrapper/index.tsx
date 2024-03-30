@@ -6,6 +6,7 @@ import { MainContent } from './main-content';
 import { Sidebar } from './sidebar';
 
 export const PageWrapper = ({ children }: { children: ReactNode }) => {
+  // console.log('render PageWrapper');
   return (
     <BaseContainer>
       <Header />
