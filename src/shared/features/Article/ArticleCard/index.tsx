@@ -1,5 +1,3 @@
-import avatar from 'assets/images/avatar.jpg';
-import coverImg from 'assets/images/cover.webp';
 import { Link } from 'react-router-dom';
 import { ROUTES } from '../../../../router/routes';
 import { Article } from '../../../types/article';
@@ -8,8 +6,6 @@ import s from './post.module.css';
 
 type PostCardProps = {
   postData: Article;
-  // one: string;
-  // two: string;
 };
 
 export const PostCard = (props: PostCardProps) => {
@@ -21,7 +17,7 @@ export const PostCard = (props: PostCardProps) => {
         <div className={s.headerLeft}>
           <span>{postData.section}</span>
           <div className={s.authorInfo}>
-            <img src={avatar} alt="avatar" className={s.avatar} />
+            <img src={postData.user.avatar} alt="avatar" className={s.avatar} />
             <span>{postData.user.fullName}</span>
           </div>
           <span>{postData.publication_date}</span>
@@ -35,7 +31,7 @@ export const PostCard = (props: PostCardProps) => {
       </Link>
 
       <div className={s.coverImage}>
-        <img src={coverImg} alt="cover" />
+        <img src={postData.cover_image} alt="cover" />
       </div>
 
       <StatsButtons likes={postData.likes} />

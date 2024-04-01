@@ -1,40 +1,31 @@
-import { useState } from 'react';
-import { useParams, useSearchParams } from 'react-router-dom';
-import { Article } from '../features/Article/ui/Article';
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { ArticleView } from '../features/Article/ui/Article';
+import Loader from '../shared/components/loader';
+import { Article } from '../shared/types/article';
 
 export const ArticlePage = () => {
   const { id } = useParams();
-  //   const naigate = useNavigate();
+
+  const [article, setArticle] = useState<Article | null>(null);
+
   const [isLoading, setIsLoading] = useState(false);
 
-  const [params, setParams] = useSearchParams();
+  useEffect(() => {
+    setIsLoading(true);
 
-  if (!id) return <h2>Такой статьи не существует</h2>;
+    fetch(`https://68f241df693169c2.mokky.dev/articles/${id}`)
+      .then(res => res.json())
+      .then((articlesData: Article) => {
+        setArticle(articlesData);
+      })
+      .catch(console.error)
+      .finally(() => setIsLoading(false));
+  }, [id]);
 
-  return (
-    <>
-      {/* <button onClick={() => naigate(ROUTES.ROOT)}>Вернуться</button> */}
-      {/* {Number(id) === 1 && <Navigate to={ROUTES.ROOT} />} */}
+  if (!article || isLoading) return <Loader />;
 
-      <button
-        onClick={() => {
-          params.set('id', '1');
-          setParams(params);
-        }}
-      >
-        Технологии
-      </button>
-      <button
-        onClick={() => {
-          params.set('id', '2');
-          setParams(params);
-        }}
-      >
-        Путешествия
-      </button>
-      <Article id={Number(params.get('id') ?? 1)} />
-    </>
-  );
+  return <ArticleView article={article} />;
 };
 
 // git clone

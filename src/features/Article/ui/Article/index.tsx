@@ -1,31 +1,12 @@
-import { useEffect, useState } from 'react';
 import { StatsButtons } from 'shared/features/Article/ArticleStatsButtons/StatsButtons';
 import type { Article as ArticleType } from '../../../../shared/types/article';
 import styles from './post.module.css';
 
 type ArticleProps = {
-  id: number;
+  article: ArticleType;
 };
 
-export const Article = ({ id }: ArticleProps) => {
-  const [article, setArticle] = useState<ArticleType | null>(null);
-
-  const [isLoading, setIsLoading] = useState(false);
-
-  useEffect(() => {
-    setIsLoading(true);
-
-    fetch(`https://68f241df693169c2.mokky.dev/articles/${id}`)
-      .then(res => res.json())
-      .then((articlesData: ArticleType) => {
-        setArticle(articlesData);
-      })
-      .catch(console.error)
-      .finally(() => setIsLoading(false));
-  }, [id]);
-
-  if (!article || isLoading) return <>Loading...</>;
-
+export const ArticleView = ({ article }: ArticleProps) => {
   return (
     <div className={styles.postCard}>
       <div className={styles.centeredContentWrapper}>
