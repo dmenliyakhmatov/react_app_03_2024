@@ -1,0 +1,31 @@
+.customSelect {
+    position: relative;
+
+}
+
+.selectLabel {
+    display: block;
+    margin-bottom: 0.5em;
+}
+
+.select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    padding: 0.5em 1em;
+    font-size: 1em;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    width: 100%;
+    cursor: pointer;
+}
+
+.select:focus {
+    outline: none;
+    border-color: #007bff;
+}
+
+.select option {
+    padding: 0.5em 1em;
+}
