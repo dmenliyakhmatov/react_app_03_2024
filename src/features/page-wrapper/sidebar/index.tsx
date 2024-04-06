@@ -31,6 +31,21 @@ export const Sidebar = () => {
           <span className={styles.icon}>📬</span>
           <a>Подписки</a>
         </div>
+        <hr />
+        <NavLink
+          to={ROUTES.TIMER}
+          className={({ isActive }) => classes(styles.menuItem, { [styles.active]: isActive })}
+        >
+          <span className={styles.icon}>💼</span>
+          <span>Timer</span>
+        </NavLink>
+        <NavLink
+          to={ROUTES.RESIZE}
+          className={({ isActive }) => classes(styles.menuItem, { [styles.active]: isActive })}
+        >
+          <span className={styles.icon}>💼</span>
+          <span>Resize</span>
+        </NavLink>
       </div>
     </nav>
   );

@@ -4,6 +4,8 @@ import { ArticlePage } from '../pages/ArticlePage';
 import { AuthPage } from '../pages/Auth';
 import { FreshPage } from '../pages/FreshPage';
 import { PopularPage } from '../pages/PopularPage';
+import { ResizeExamplePage } from '../pages/ResizeExample';
+import { TimerPage } from '../pages/TimerPage';
 import { ROUTES } from './routes';
 
 export const router = createBrowserRouter([
@@ -26,6 +28,14 @@ export const router = createBrowserRouter([
       {
         path: ROUTES.AUTH,
         element: <AuthPage />,
+      },
+      {
+        path: ROUTES.TIMER,
+        element: <TimerPage />,
+      },
+      {
+        path: ROUTES.RESIZE,
+        element: <ResizeExamplePage />,
       },
     ],
   },

@@ -7,4 +7,6 @@ export enum ROUTES {
   FRESH = '/fresh',
   ARTICLE = '/article',
   AUTH = '/auth',
+  TIMER = '/timer',
+  RESIZE = '/resize',
 }
