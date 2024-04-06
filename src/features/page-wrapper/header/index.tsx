@@ -1,5 +1,5 @@
-import avatar from 'assets/images/avatar.jpg';
 import { ChangeEvent } from 'react';
+import { LoginButton } from './LoginButton';
 import styles from './header.module.css'; // Путь к вашему файлу стилей
 
 export const Header = ({ onSearchChange }: { onSearchChange?: (e: ChangeEvent<HTMLInputElement>) => void }) => {
@@ -16,11 +16,8 @@ export const Header = ({ onSearchChange }: { onSearchChange?: (e: ChangeEvent<HT
       <div className={styles.rightSection}>
         <div className={styles.iconMessage}>📧</div>
         <div className={styles.iconNotification}>🔔</div>
-        {/* <div className={styles.avatar}>User Avatar</div> */}
 
-        <img className={styles.avatar} src={avatar} alt="avatar" />
-
-        <button className={styles.newPostButton}>Выйти</button>
+        <LoginButton />
       </div>
     </header>
   );
