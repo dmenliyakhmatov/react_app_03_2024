@@ -1,6 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom';
 import { Root } from '../features/core/Root';
 import { ArticlePage } from '../pages/ArticlePage';
+import { AuthPage } from '../pages/Auth';
 import { FreshPage } from '../pages/FreshPage';
 import { PopularPage } from '../pages/PopularPage';
 import { ROUTES } from './routes';
@@ -21,6 +22,10 @@ export const router = createBrowserRouter([
       {
         path: `${ROUTES.ARTICLE}/:id`,
         element: <ArticlePage />,
+      },
+      {
+        path: ROUTES.AUTH,
+        element: <AuthPage />,
       },
     ],
   },
