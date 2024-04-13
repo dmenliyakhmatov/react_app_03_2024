@@ -4,6 +4,7 @@ import { ArticleList } from '../features/Articles/ui/ArticleList';
 import Select from '../shared/components/Select';
 import Loader from '../shared/components/loader';
 import { Article } from '../shared/types/article';
+import { get } from '../transport';
 
 export const PopularPage = () => {
   const [articles, setArticles] = useState<Article[]>([]);
@@ -21,10 +22,9 @@ export const PopularPage = () => {
 
     const queryParams = section === 'all' ? '' : `?section=${section}`; //параметры фильтрации списка
 
-    fetch(`https://68f241df693169c2.mokky.dev/articles${queryParams}`) //фильтруем список по разделу
-      .then(res => res.json())
-      .then((articlesData: Article[]) => {
-        setArticles(articlesData);
+    get<Article[]>(`/articles${queryParams}`) //фильтруем список по разделу
+      .then(({ data }) => {
+        setArticles(data);
       })
       .catch(console.error)
       .finally(() => setIsLoading(false));

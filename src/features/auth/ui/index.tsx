@@ -1,26 +1,19 @@
 import { ChangeEvent, FormEvent, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
 import { ROUTES } from '../../../router/routes';
-import { getIsLoading, getToken, setIsLoading, setUserData } from '../../../store/userData';
+import { useAppDispatch } from '../../../store';
+import { getIsLoading, getToken } from '../../../store/userData';
+import { postAuthData } from '../../../store/userData/effects';
+import { AuthFormData } from '../../../store/userData/types';
 import styles from './loginForm.module.css';
 
-type AuthResponse = {
-  data: {
-    id: number;
-    fullName: string;
-    avatar: string;
-    email: string;
-  };
-  token: string;
-};
-
 export const LoginForm = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const isLoading = useSelector(getIsLoading);
   const token = useSelector(getToken);
 
-  const [formState, setFormState] = useState({ email: '', password: '' });
+  const [formState, setFormState] = useState<AuthFormData>({ email: '', password: '' });
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -31,28 +24,7 @@ export const LoginForm = () => {
   const handeSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    dispatch(setIsLoading(true));
-
-    fetch(`https://68f241df693169c2.mokky.dev/auth`, {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(formState),
-    })
-      .then(res => {
-        if (!res.ok) throw res;
-
-        return res.json();
-      })
-      .then(({ data, token }: AuthResponse) => {
-        const userPayload = { ...data, token };
-
-        dispatch(setUserData(userPayload));
-      })
-      .catch(console.error)
-      .finally(() => dispatch(setIsLoading(false)));
+    dispatch(postAuthData(formState));
   };
 
   if (token) return <Navigate to={ROUTES.ROOT} />;

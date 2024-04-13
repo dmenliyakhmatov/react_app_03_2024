@@ -1,0 +1,20 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Loop Visualization</title>
+</head>
+<body>
+<div style="display: flex; gap: 20px;">
+    <div style=" padding: 8px; width: 100px">Stack</div>
+    <div style=" padding: 8px; width: 100px">Microtasks</div>
+    <div style=" padding: 8px; width: 100px">Macrotasks</div>
+</div>
+<div style="display: flex; gap: 20px; height: 500px">
+    <div id="stack" style="border: 1px solid green; padding: 8px; width: 100px"></div>
+    <div id="microtask" style="border: 1px solid blue; padding: 8px; width: 100px"></div>
+    <div id="macrotask" style="border: 1px solid red; padding: 8px; width: 100px"></div>
+</div>
+<script src="index.js"></script>
+</body>
+</html>
