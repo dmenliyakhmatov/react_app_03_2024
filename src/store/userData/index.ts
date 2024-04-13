@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import type { PayloadAction } from '@reduxjs/toolkit';
+import { STORAGE_KEYS, getStorageItem } from '../../utils/storage';
 import { postAuthData } from './effects';
 
 type User = {
@@ -33,13 +33,7 @@ export const userDataSlice = createSlice({
   name: 'userData',
   initialState,
   reducers: {
-    setUserData: (state, action: PayloadAction<User>) => {
-      state.userData = action.payload;
-    },
-    setIsLoading: (state, action: PayloadAction<boolean>) => {
-      //   return { ...state, isLoading: action.payload };
-      state.isLoading = action.payload;
-    },
+    clearUserData: () => initialState,
   },
   selectors: {
     getToken: state => state.userData.token,
@@ -62,11 +56,20 @@ export const userDataSlice = createSlice({
   },
 });
 
-export const { setIsLoading, setUserData } = userDataSlice.actions;
+export const { clearUserData } = userDataSlice.actions;
 
 export const { getIsLoading, getToken, getUserAvatar } = userDataSlice.selectors;
 
-console.log(userDataSlice);
+export const defineUserDataFromStorage = (): UserDataState => {
+  const userData = getStorageItem(STORAGE_KEYS.USER_DATA);
+  const initState = userDataSlice.getInitialState();
+
+  if (userData) {
+    return { ...initState, userData };
+  }
+
+  return initState;
+};
 
 // const initialStore = {
 //   userData: {},

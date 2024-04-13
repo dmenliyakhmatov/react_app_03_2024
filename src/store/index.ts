@@ -1,12 +1,15 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { useDispatch } from 'react-redux';
-import { userDataSlice } from './userData';
+import { defineUserDataFromStorage, userDataSlice } from './userData';
 
 export const rootStore = configureStore({
   reducer: {
     [userDataSlice.name]: userDataSlice.reducer,
   },
   devTools: true,
+  preloadedState: {
+    userData: defineUserDataFromStorage(),
+  },
 });
 
 export type AppDispatch = typeof rootStore.dispatch;
