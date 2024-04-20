@@ -20,7 +20,7 @@ export const PopularPage = () => {
     //описание того, как в моки дев работает фильтрация
     //https://mokky.gitbook.io/welcome/obrashenie-k-resursam/filtraciya/prostoi-poisk
 
-    get<Article[]>(`/private_articles`) //фильтруем список по разделу
+    get<Article[]>(`/articles`) //фильтруем список по разделу
       .then(({ data }) => {
         setArticles(data);
       })

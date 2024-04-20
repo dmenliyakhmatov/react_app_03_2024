@@ -1,9 +1,15 @@
-import { ErrorMessage, Field, Form, Formik } from 'formik';
+import { Field, Form, Formik } from 'formik';
 import s from './createArticleForm.module.css';
 
-import type { FieldProps } from 'formik';
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import Select from 'react-select';
-import Input from '../../../shared/components/Input';
+import { ROUTES } from '../../../router/routes';
+import { FormikInput } from '../../../shared/components/FormikInput';
+import { useAppDispatch } from '../../../store';
+import { сreateArticleFormValidationScheme } from '../model/schemes/createArticles';
+import { createArticle } from '../model/store/effects';
+import { getCreateArticleIsLoading } from '../model/store/slice';
 
 // "title":
 // "description":
@@ -11,59 +17,52 @@ import Input from '../../../shared/components/Input';
 // "content"
 // "section"
 
-const requiredValidation = (value: string) => {
-  if (!value) {
-    return 'Обязательное поле';
-  }
-};
+// const requiredValidation = (value: string) => {
+//   if (!value) {
+//     return 'Обязательное поле';
+//   }
+// };
 
 export const CreateArticleForm = () => {
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+  const isLoading = useSelector(getCreateArticleIsLoading);
+
   return (
     <div className={s.createPostFormContainer}>
       <Formik
-        initialValues={{
-          title: '',
-          content: '',
-          description: '',
-          section: '',
-          cover_image: '',
-        }}
+        initialValues={сreateArticleFormValidationScheme.getDefault()}
         onSubmit={val => {
-          console.log(val);
+          dispatch(createArticle(val))
+            .unwrap()
+            .then(() => {
+              navigate(ROUTES.ROOT);
+            });
         }}
         validateOnBlur
+        validationSchema={сreateArticleFormValidationScheme}
       >
         <Form>
           <div className={s.formField}>
-            <Field name="title" id="title" className={s.inputField} validate={requiredValidation}>
-              {({ field, meta }: FieldProps) => {
-                return <Input label="Заголовок" {...field} {...meta} />;
-              }}
-            </Field>
-
-            {/* <ErrorMessage component="div" className={s.errorMessage} name="title" /> */}
-          </div>
-          <div className={s.formField}>
-            <Field as="textarea" name="description" className={s.inputField} validate={requiredValidation} />
-
-            <ErrorMessage component="div" className={s.errorMessage} name="description" />
+            <FormikInput label="Заголовок" name="title" />
           </div>
 
           <div className={s.formField}>
-            <Field as="input" name="cover_image" className={s.inputField} validate={requiredValidation} />
-            <ErrorMessage component="div" className={s.errorMessage} name="cover_image" />
+            <FormikInput label="Описание" type="textarea" name="description" />
           </div>
 
           <div className={s.formField}>
-            <Field as="textarea" name="content" className={s.inputField} validate={requiredValidation} />
+            <FormikInput label="Обложка" name="cover_image" />
+          </div>
 
-            <ErrorMessage component="div" className={s.errorMessage} name="content" />
+          <div className={s.formField}>
+            <FormikInput label="Содержимое" type="textarea" name="content" />
           </div>
 
           <div className={s.formField}>
             <Field
+              id="section"
               name="section"
-              className={s.inputField}
               component={Select}
               options={[
                 { label: 'Путешествия', value: 'travel' },
@@ -72,7 +71,7 @@ export const CreateArticleForm = () => {
             />
           </div>
 
-          <button type="submit" className={s.submitButton}>
+          <button type="submit" className={s.submitButton} disabled={isLoading}>
             Отправить
           </button>
         </Form>
