@@ -9,4 +9,5 @@ export enum ROUTES {
   AUTH = '/auth',
   TIMER = '/timer',
   RESIZE = '/resize',
+  CREATE_ARTICLE = '/create-article',
 }

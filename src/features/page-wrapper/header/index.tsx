@@ -1,5 +1,7 @@
 import { ChangeEvent, useContext } from 'react';
+import { Link } from 'react-router-dom';
 import Select from 'react-select';
+import { ROUTES } from '../../../router/routes';
 import { LANGUAGES } from '../../../shared/types/i18n';
 import { LanguageContext } from '../../context/i18n';
 import { LoginButton } from './LoginButton';
@@ -19,7 +21,10 @@ export const Header = ({ onSearchChange }: { onSearchChange?: (e: ChangeEvent<HT
       </div>
       <div className={styles.centerSection}>
         <input type="text" placeholder="Search" className={styles.searchInput} onChange={onSearchChange} />
-        <button className={styles.newPostButton}>Новый пост</button>
+
+        <Link to={ROUTES.CREATE_ARTICLE} className={styles.newPostButton}>
+          Новый пост
+        </Link>
       </div>
       <div className={styles.rightSection}>
         <Select

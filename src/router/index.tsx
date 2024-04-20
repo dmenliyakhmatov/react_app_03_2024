@@ -2,6 +2,7 @@ import { createBrowserRouter } from 'react-router-dom';
 import { Root } from '../features/core/Root';
 import { ArticlePage } from '../pages/ArticlePage';
 import { AuthPage } from '../pages/Auth';
+import { CreateArticlePage } from '../pages/CreateArticlePage';
 import { FreshPage } from '../pages/FreshPage';
 import { PopularPage } from '../pages/PopularPage';
 import { ResizeExamplePage } from '../pages/ResizeExample';
@@ -36,6 +37,10 @@ export const router = createBrowserRouter([
       {
         path: ROUTES.RESIZE,
         element: <ResizeExamplePage />,
+      },
+      {
+        path: ROUTES.CREATE_ARTICLE,
+        element: <CreateArticlePage />,
       },
     ],
   },
