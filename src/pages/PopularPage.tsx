@@ -10,7 +10,7 @@ export const PopularPage = () => {
   const [articles, setArticles] = useState<Article[]>([]);
 
   const [isLoading, setIsLoading] = useState(false);
-
+  console.log('popular render');
   const [params, setParams] = useSearchParams();
   const section = params.get('section') || 'all';
 

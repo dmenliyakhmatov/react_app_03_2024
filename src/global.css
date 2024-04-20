@@ -11,3 +11,11 @@ body {
 * {
     box-sizing: border-box;
 }
+
+:root {
+    --text-color: red
+}
+
+[data-theme="light"] {
+    --text-color: blue
+}

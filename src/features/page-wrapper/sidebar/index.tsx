@@ -1,35 +1,45 @@
 import classes from 'classnames';
+import { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
 import { ROUTES } from '../../../router/routes';
+import { LanguageContext } from '../../context/i18n';
 import styles from './left-menu.module.css';
 
 export const Sidebar = () => {
+  const i18nData = useContext(LanguageContext);
+
+  console.log('sidebar render');
+
+  if (!i18nData) return null;
+
+  const { lacales } = i18nData;
+
   return (
     <nav className={styles.leftMenu}>
       <div>
         <NavLink to={ROUTES.ROOT} className={({ isActive }) => classes(styles.menuItem, { [styles.active]: isActive })}>
           <span className={styles.icon}>🔥</span>
-          <span>Популярное</span>
+          <span>{lacales.popular}</span>
         </NavLink>
         <NavLink
           to={ROUTES.FRESH}
           className={({ isActive }) => classes(styles.menuItem, { [styles.active]: isActive })}
         >
           <span className={styles.icon}>🆕</span>
-          <span>Свежее</span>
+          <span>{lacales.fresh}</span>
         </NavLink>
         <a className={styles.menuItem}>
           <span className={styles.icon}>💼</span>
-          <span>Вакансии</span>
+          <span>{lacales.vacancies}</span>
         </a>
 
         <div className={styles.menuItem}>
           <span className={styles.icon}>🏆</span>
-          <a>Рейтинг</a>
+          <a>{lacales.rate}</a>
         </div>
         <div className={styles.menuItem}>
           <span className={styles.icon}>📬</span>
-          <a>Подписки</a>
+          <a>{lacales.subsctiptions}</a>
         </div>
         <hr />
         <NavLink
