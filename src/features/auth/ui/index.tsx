@@ -21,6 +21,8 @@ export const LoginForm = () => {
     setFormState(prev => ({ ...prev, [name]: value }));
   };
 
+  console.log('auth render');
+
   const handeSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 

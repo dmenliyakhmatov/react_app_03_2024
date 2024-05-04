@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { memo, useCallback, useState } from 'react';
 
 export const MemoExamplePage = () => {
   return (
@@ -17,7 +17,7 @@ interface RowData {
 
 function Table() {
   // Массив данных для отображения в таблице
-  const tabelData = [
+  const [tabelData, setTableData] = useState([
     { id: 1, name: 'John', age: 30 },
     { id: 2, name: 'Jane', age: 25 },
     { id: 3, name: 'Doe', age: 40 },
@@ -68,38 +68,66 @@ function Table() {
     { id: 48, name: 'Simon', age: 43 },
     { id: 49, name: 'Tiffany', age: 33 },
     { id: 50, name: 'Ulysses', age: 49 },
-  ];
+  ]);
 
   // Состояние для хранения выбранных строк таблицы
   const [selectedRows, setSelectedRows] = useState<number[]>([]);
-
+  const [inputValue, setInputValue] = useState('');
   // Функция для выбора строки
-  const handleRowClick = (id: number) => {
-    const selectedIndex = selectedRows.indexOf(id);
-    if (selectedIndex === -1) {
-      setSelectedRows([...selectedRows, id]);
-    } else {
-      const updatedRows = [...selectedRows];
-      updatedRows.splice(selectedIndex, 1);
-      setSelectedRows(updatedRows);
-    }
-  };
+  const handleRowClick = useCallback((id: number) => {
+    setSelectedRows(prev => {
+      const selectedIndex = prev.indexOf(id);
+      if (selectedIndex === -1) {
+        return [...prev, id];
+      } else {
+        const updatedRows = [...prev];
+        updatedRows.splice(selectedIndex, 1);
+        return updatedRows;
+      }
+    });
+
+    // const selectedIndex = selectedRows.indexOf(id);
+    // if (selectedIndex === -1) {
+    //   setSelectedRows([...selectedRows, id]);
+    // } else {
+    //   const updatedRows = [...selectedRows];
+    //   updatedRows.splice(selectedIndex, 1);
+    //   setSelectedRows(updatedRows);
+    // }
+  }, []);
+
+  console.log('render table');
 
   return (
-    <table>
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Name</th>
-          <th>Age</th>
-        </tr>
-      </thead>
-      <tbody>
-        {tabelData.map(row => (
-          <Row key={row.id} handleRowClick={handleRowClick} {...row} selected={selectedRows.includes(row.id)} />
-        ))}
-      </tbody>
-    </table>
+    <>
+      <input type="text" value={inputValue} onChange={evt => setInputValue(evt.target.value)} />
+      <button
+        onClick={() => {
+          setTableData(prev => [...prev, { id: prev.length + 1, name: inputValue, age: 30 }]);
+        }}
+      >
+        Add user
+      </button>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Age</th>
+          </tr>
+        </thead>
+        <tbody>
+          {tabelData.map(row => (
+            <OptimizedRow
+              key={row.id}
+              handleRowClick={handleRowClick}
+              {...row}
+              selected={selectedRows.includes(row.id)}
+            />
+          ))}
+        </tbody>
+      </table>
+    </>
   );
 }
 
@@ -109,6 +137,8 @@ type RowProps = {
 } & RowData;
 
 const tooLongTask = (arg: boolean) => {
+  console.log('task calculation');
+
   let i = 0;
   while (i < 100000000) {
     i++;
@@ -117,7 +147,11 @@ const tooLongTask = (arg: boolean) => {
 };
 
 const Row = (props: RowProps) => {
-  const a = tooLongTask(props.selected);
+  //   const a = useMemo(() => tooLongTask(props.selected), [props.selected]);
+
+  tooLongTask(props.selected);
+
+  console.log('row render');
   return (
     <tr
       onClick={() => props.handleRowClick(props.id)}
@@ -129,3 +163,5 @@ const Row = (props: RowProps) => {
     </tr>
   );
 };
+
+const OptimizedRow = memo(Row);

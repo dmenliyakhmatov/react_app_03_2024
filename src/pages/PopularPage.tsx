@@ -1,32 +1,15 @@
-import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { ArticleList } from '../features/Articles/ui/ArticleList';
+import { useFetch } from '../hooks/useFetch';
 import Select from '../shared/components/Select';
 import Loader from '../shared/components/loader';
 import { Article } from '../shared/types/article';
-import { get } from '../transport';
 
 export const PopularPage = () => {
-  const [articles, setArticles] = useState<Article[]>([]);
-
-  const [isLoading, setIsLoading] = useState(false);
-  console.log('popular render');
   const [params, setParams] = useSearchParams();
   const section = params.get('section') || 'all';
 
-  useEffect(() => {
-    setIsLoading(true);
-
-    //описание того, как в моки дев работает фильтрация
-    //https://mokky.gitbook.io/welcome/obrashenie-k-resursam/filtraciya/prostoi-poisk
-
-    get<Article[]>(`/articles`) //фильтруем список по разделу
-      .then(({ data }) => {
-        setArticles(data);
-      })
-      .catch(console.error)
-      .finally(() => setIsLoading(false));
-  }, [section]);
+  const { data: articles, isLoading } = useFetch<Article[]>('/articles');
 
   return (
     <div>
