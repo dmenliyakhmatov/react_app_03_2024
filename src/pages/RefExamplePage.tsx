@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { ArticleList } from '../features/Articles/ui/ArticleList';
 import { mockPosts } from '../shared/mocks/mockArticles';
 
-export const FreshPage = () => {
+export const RefExamplePage = () => {
   const [articles, setArticles] = useState(mockPosts);
 
   return (

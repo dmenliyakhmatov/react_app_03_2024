@@ -56,6 +56,29 @@ export const Sidebar = () => {
           <span className={styles.icon}>💼</span>
           <span>Resize</span>
         </NavLink>
+
+        <NavLink
+          to={ROUTES.REF_EXAMPLE}
+          className={({ isActive }) => classes(styles.menuItem, { [styles.active]: isActive })}
+        >
+          <span className={styles.icon}>💼</span>
+          <span>Ref</span>
+        </NavLink>
+        <NavLink
+          to={ROUTES.MEMO_EXAMPLE}
+          className={({ isActive }) => classes(styles.menuItem, { [styles.active]: isActive })}
+        >
+          <span className={styles.icon}>💼</span>
+          <span>Memo</span>
+        </NavLink>
+
+        <NavLink
+          to={ROUTES.KEY_PROP}
+          className={({ isActive }) => classes(styles.menuItem, { [styles.active]: isActive })}
+        >
+          <span className={styles.icon}>💼</span>
+          <span>Key</span>
+        </NavLink>
       </div>
     </nav>
   );

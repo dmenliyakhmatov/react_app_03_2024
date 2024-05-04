@@ -10,4 +10,7 @@ export enum ROUTES {
   TIMER = '/timer',
   RESIZE = '/resize',
   CREATE_ARTICLE = '/create-article',
+  MEMO_EXAMPLE = '/memo-example',
+  REF_EXAMPLE = '/ref-example',
+  KEY_PROP = '/key-prop',
 }
