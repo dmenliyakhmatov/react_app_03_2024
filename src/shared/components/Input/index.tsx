@@ -24,7 +24,10 @@ const Input = ({ label, error, touched, ...props }: InputProps) => {
         value={props.value}
         onChange={props.onChange}
         onBlur={props.onBlur}
-        className={clsx(s.inputField, { [s.textareaField]: props.type === 'textarea', [s.error]: error && touched })}
+        className={clsx(s.inputField, {
+          [s.error]: error && touched,
+          [s.textareaField]: props.type === 'textarea',
+        })}
       />
       {error && touched && <div className={s.errorMessage}>{error}</div>}
     </div>

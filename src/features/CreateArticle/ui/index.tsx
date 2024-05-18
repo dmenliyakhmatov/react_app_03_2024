@@ -1,45 +1,50 @@
 import { Field, Form, Formik } from 'formik';
 import s from './createArticleForm.module.css';
 
-import { useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 import Select from 'react-select';
-import { ROUTES } from '../../../router/routes';
 import { FormikInput } from '../../../shared/components/FormikInput';
-import { useAppDispatch } from '../../../store';
 import { сreateArticleFormValidationScheme } from '../model/schemes/createArticles';
-import { createArticle } from '../model/store/effects';
-import { getCreateArticleIsLoading } from '../model/store/slice';
 
-// "title":
-// "description":
-// "cover_image"
-// "content"
-// "section"
+import type { FieldProps } from 'formik';
+import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { ROUTES } from '../../../router/routes';
+import { useCreateArticleMutation } from '../../../services/articles';
+import { getUserId } from '../../../store/userData';
 
-// const requiredValidation = (value: string) => {
-//   if (!value) {
-//     return 'Обязательное поле';
-//   }
-// };
+const options = [
+  { label: 'Путешествия', value: 'travel' },
+  { label: 'Технологии', value: 'tech' },
+];
 
 export const CreateArticleForm = () => {
-  const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const isLoading = useSelector(getCreateArticleIsLoading);
+  const userId = useSelector(getUserId);
+  const [createArticle, { isLoading, isSuccess }] = useCreateArticleMutation();
+
+  useEffect(() => {
+    if (isSuccess) {
+      navigate(ROUTES.FRESH);
+    }
+  }, [isSuccess, navigate]);
+
+  if (!userId) return <Navigate to={ROUTES.AUTH} />;
 
   return (
     <div className={s.createPostFormContainer}>
       <Formik
         initialValues={сreateArticleFormValidationScheme.getDefault()}
         onSubmit={val => {
-          dispatch(createArticle(val))
-            .unwrap()
-            .then(() => {
-              navigate(ROUTES.ROOT);
-            });
+          createArticle({ ...val, user_id: userId });
+
+          // dispatch(createArticle(val))
+          //   .unwrap()
+          //   .then(() => {
+          //     navigate(ROUTES.ROOT);
+          //   });
         }}
-        validateOnBlur
+        // validateOnBlur
         validationSchema={сreateArticleFormValidationScheme}
       >
         <Form>
@@ -60,15 +65,18 @@ export const CreateArticleForm = () => {
           </div>
 
           <div className={s.formField}>
-            <Field
-              id="section"
-              name="section"
-              component={Select}
-              options={[
-                { label: 'Путешествия', value: 'travel' },
-                { label: 'Технологии', value: 'tech' },
-              ]}
-            />
+            <Field name="section">
+              {({ field, form }: FieldProps) => (
+                <Select
+                  value={options.find(({ value }) => field.value === value)}
+                  onChange={(val, meta) => {
+                    form.setFieldValue(field.name, val?.value || '');
+                  }}
+                  onBlur={field.onBlur}
+                  options={options}
+                />
+              )}
+            </Field>
           </div>
 
           <button type="submit" className={s.submitButton} disabled={isLoading}>

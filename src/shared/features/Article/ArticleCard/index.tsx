@@ -16,10 +16,10 @@ export const PostCard = (props: PostCardProps) => {
       <div className={s.header}>
         <div className={s.headerLeft}>
           <span>{postData.section}</span>
-          <div className={s.authorInfo}>
+          {/* <div className={s.authorInfo}>
             <img src={postData.user.avatar} alt="avatar" className={s.avatar} />
             <span>{postData.user.fullName}</span>
-          </div>
+          </div> */}
           <span>{postData.publication_date}</span>
         </div>
         <div className={s.headerRight}>

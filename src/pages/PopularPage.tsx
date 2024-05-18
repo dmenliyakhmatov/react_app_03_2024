@@ -9,7 +9,7 @@ export const PopularPage = () => {
   const [params, setParams] = useSearchParams();
   const section = params.get('section') || 'all';
 
-  const { data: articles, isLoading } = useFetch<Article[]>('/articles');
+  const { data: articles, isLoading } = useFetch<Article[]>('/articles?_relations=users');
 
   return (
     <div>

@@ -20,13 +20,19 @@ export const LanguageProvider = ({ children }: { children: ReactNode }) => {
   );
 };
 
-const ThemeContext = createContext<{ theme: 'light' | 'black' }>({ theme: 'light' });
+export type ThemeName = 'light' | 'black';
+
+const ThemeContext = createContext<{
+  theme: ThemeName;
+  setTheme: React.Dispatch<React.SetStateAction<ThemeName>>;
+} | null>(null);
 
 export const ThemeProvider = ({ children }: { children: ReactNode }) => {
-  const [theme, setTheme] = useState<'light' | 'black'>('light');
+  const [theme, setTheme] = useState<ThemeName>('light');
 
-  useEffect(() => {document.body.dataset.theme = theme}, [theme])
+  useEffect(() => {
+    document.body.dataset.theme = theme;
+  }, [theme]);
 
-  return <ThemeContext.Provider value={{ theme }}>{children}</ThemeContext.Provider>;
+  return <ThemeContext.Provider value={{ theme, setTheme }}>{children}</ThemeContext.Provider>;
 };
-
